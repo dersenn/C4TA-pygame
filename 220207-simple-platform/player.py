@@ -10,7 +10,7 @@ class Player:
     self.h = h
     self.bounds = pygame.Rect(self.x, self.y, self.w, self.h)
     self.surface = surface
-    self.vel = tile_size
+    self.vel = 10
 
 
   def move(self):
@@ -29,15 +29,14 @@ class Player:
       self.x += self.vel
 
 
-  def collision(self):
-    print('collision')
-
-
-  def draw(self):
+  def draw(self, color):
     self.bounds = pygame.Rect(self.x, self.y, self.w, self.h)
-    pygame.draw.rect(self.surface, black, self.bounds)
+    pygame.draw.rect(self.surface, color, self.bounds)
 
 
-  def update(self):
-    self.move()
-    self.draw()
+  def update(self, running):
+    if running == False:
+      self.draw(red)
+    else:
+      self.move()
+      self.draw(black)
